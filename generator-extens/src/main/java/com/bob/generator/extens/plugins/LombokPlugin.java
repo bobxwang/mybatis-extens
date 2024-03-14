@@ -134,6 +134,15 @@ public class LombokPlugin extends PluginAdapterEnhancement {
         return false;
     }
 
+    private Method newMethod() {
+        Method method = new Method("whenBuild");
+        method.setReturnType(new FullyQualifiedJavaType("String"));
+        method.setDefault(true);
+        method.addBodyLine(
+                "return \"" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()) + "\";");
+        return method;
+    }
+
     private enum Annotations {
         DATA("data", "@Data", "lombok.Data"),
         BUILDER("builder", "@Builder", "lombok.Builder"),
